@@ -39,10 +39,10 @@ This repository provides the code for a **multimodal realistic simulation framew
 ## **📌 Requirements**  
 
 - **OS**: Windows 10 / Linux (Ubuntu 18.04)  
-- **CARLA Simulator**: Version **0.9.15** [(Download)](https://github.com/carla-simulator/carla/releases)  
-- **MATLAB**: Version **R2024a**  
+- **CARLA Simulator**: Version **0.9.15** [(Download)](https://github.com/carla-simulator/carla/releases)
+- **MATLAB**: Version **R2024a** [(Download)](https://www.mathworks.com/products/new_products/release2024a.html)
 - **Python**: **3.7.12**  
-- **Blender**: **4.2**  
+- **Blender**: **4.2** [(Download)](https://www.blender.org/download/releases/4-2/)
 
 ---
 
