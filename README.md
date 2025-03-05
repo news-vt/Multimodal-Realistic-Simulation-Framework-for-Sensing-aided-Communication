@@ -2,6 +2,8 @@
 
 This repository provides the code for a **multimodal realistic simulation framework** using **CARLA** and **MATLAB**. CARLA is used to generate realistic **autonomous driving sensor data**, while MATLAB is employed for **wireless communication simulations**. This framework enables **multimodal sensing data collection**, **3D digital reconstruction**, and **ray-tracing-based wireless channel modeling** to facilitate **beamforming and channel analysis**.  
 
+---
+
 ## **🛠️ Workflow Overview**  
 ![Framework Overview](img/framework.png)
 
@@ -27,11 +29,12 @@ This repository provides the code for a **multimodal realistic simulation framew
 - **Beamforming impact on RSS (Received Signal Strength)** is analyzed by tracing signal paths and reflections.  
 - Enables **precise evaluation of beam selection strategies** in complex urban environments.  
 
-## **📌 Key Features**  
+#### **📌 Key Features**  
 ✅ **Realistic multimodal sensing**: LiDAR, Radar, RGB Cameras integrated into an urban driving environment.  
 ✅ **Seamless 3D environment conversion**: CARLA to MATLAB using Blender API.  
 ✅ **Accurate wireless channel modeling**: Ray tracing for beamforming evaluation.  
 
+---
 
 ## **📌 Requirements**  
 
@@ -56,16 +59,26 @@ You can verify that the installation was successful by running:
 python -c "import carla; print('CARLA successfully imported')"
 ```
 
+---
 
 ## **🚀 Getting Started**
 
+---
 
 ## **📊 Dataset**  
 The dataset generated using this framework is available on **Kaggle**:  
 🔗 [Multimodal Sensing Dataset for Beam Prediction](https://www.kaggle.com/datasets/whateveruwant/multimodal-sensing-dataset-for-beam-prediction)  
 
+---
+
 ## **👥 Authors**
+
+---
 
 ## **📝 Citation**
 
+---
+
 ## **📚 References**
+
+---
