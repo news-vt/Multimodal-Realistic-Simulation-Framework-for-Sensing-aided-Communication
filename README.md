@@ -66,7 +66,7 @@ python -c "import carla; print('CARLA successfully imported')"
 ---
 
 ## **📊 Dataset**  
-![Dataset Distribution](img/distribution.png)
+![Dataset Distribution](img/Distribution.png)
 The dataset generated using this framework is available on **Kaggle**:  
 🔗 [Multimodal Sensing Dataset for Beam Prediction](https://www.kaggle.com/datasets/whateveruwant/multimodal-sensing-dataset-for-beam-prediction)  
 
