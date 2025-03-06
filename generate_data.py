@@ -11,16 +11,6 @@ lidar_count = 0
 radar_count = 0
 END_EPI = False
 
-# Sensor callback.
-# This is where you receive the sensor data and
-# process it as you liked and the important part is that,
-# at the end, it should include an element into the sensor queue.
-def sensor_callback(sensor_data, sensor_queue, sensor_name):
-    # Do stuff with the sensor_data data like save it to disk
-    # Then you just need to add to the queue
-    sensor_queue.put((sensor_data.frame, sensor_name))
-
-
 def save_image_gps(_image, _world, _client, _path, _x, _y):
     no_vehicle = True
     vehicles = _world.get_actors().filter('vehicle.*')

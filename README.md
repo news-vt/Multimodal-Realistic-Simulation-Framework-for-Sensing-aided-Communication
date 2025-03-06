@@ -41,7 +41,7 @@ This repository provides the code for a **multimodal realistic simulation framew
 - **OS**: Windows 10 / Linux (Ubuntu 18.04)  
 - **CARLA Simulator**: Version **0.9.15** [(Download)](https://github.com/carla-simulator/carla/releases)
 - **MATLAB**: Version **R2024a** [(Download)](https://www.mathworks.com/products/new_products/release2024a.html)
-- **Python**: **3.7.12**  
+- **Python**: **3.9.21**  
 - **Blender**: **4.2** [(Download)](https://www.blender.org/download/releases/4-2/)
 
 ---
@@ -63,6 +63,29 @@ python -c "import carla; print('CARLA successfully imported')"
 
 ## **🚀 Getting Started**
 
+#### Using MATLAB Engine API (if MATLAB is Installed)
+To use the MATLAB Engine API, you must first install the MATLAB for Python.
+**Setup**
+If MATLAB is installed, the best way to run `.m` files from Python is through the `matlab.engine` module.
+
+```sh
+cd "C:\Program Files\MATLAB\R2023b\extern\engines\python"
+python -m pip install .
+```
+
+#### Using Blender API (if Blender is Installed)
+To use the Blender API, you must first install the Blender Engine for Python.
+**Setup**
+If Blender is installed, you need to setup Blender API for Python.
+
+```sh
+cd "D:\Program Files\Blender Foundation\Blender 4.2\4.2\python\bin"
+python.exe -m pip install --upgrade pip
+python.exe -m pip install bpy
+python.exe -m pip install pandas
+python.exe -m pip install scipy
+```
+
 ---
 
 ## **📊 Dataset**  
@@ -73,6 +96,8 @@ The dataset generated using this framework is available on **Kaggle**:
 ---
 
 ## **👥 Authors**
+- [Yumin Park](https://github.com/whateveruwant) [![whateveruwant github](https://img.shields.io/badge/GitHub-whateveruwant-181717.svg?style=flat&logo=github)](https://github.com/whateveruwant)
+- [Walid Saad](https://github.com/saadwalid) [![saadwalid github](https://img.shields.io/badge/GitHub-saadwalid-181717.svg?style=flat&logo=github)](https://github.com/saadwalid)
 
 ---
 

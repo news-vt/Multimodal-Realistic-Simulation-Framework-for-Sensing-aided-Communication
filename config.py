@@ -1,7 +1,9 @@
 class GlobalConfig:
     MAX_STEP = 200 # maximum step of each episode
-    SAVE_ROOT = 'D:/OneDrive/Workspace/Github/dataset_carla/Test/'
-    EPI_NAME = '/episode_1'
+    SAVE_ROOT = './out/'
+    EPI_NAME = '/episode_x'
+    MAT_SAVE_ROOT = '../out/'
+    BLENDER_PATH = 'D:/Program Files/Blender Foundation/Blender 4.2/4.2/python/bin/python.exe' # Your Blender Path
 
     # 2 Lane Scenario
     MAP_X = [-90, 115]

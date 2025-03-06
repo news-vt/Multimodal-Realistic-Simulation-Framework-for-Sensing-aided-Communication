@@ -313,7 +313,6 @@ def main():
                 world.wait_for_tick()
 
     finally:
-
         if not args.asynch and synchronous_master:
             settings = world.get_settings()
             settings.synchronous_mode = False
