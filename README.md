@@ -69,7 +69,7 @@ To use the MATLAB Engine API, you must first install the MATLAB for Python.
 If MATLAB is installed, the best way to run `.m` files from Python is through the `matlab.engine` module.
 
 ```sh
-cd "C:\Program Files\MATLAB\R2023b\extern\engines\python"
+cd "C:\your-root\MATLAB\R2023b\extern\engines\python"
 python -m pip install .
 ```
 
@@ -79,12 +79,65 @@ To use the Blender API, you must first install the Blender Engine for Python.
 If Blender is installed, you need to setup Blender API for Python.
 
 ```sh
-cd "D:\Program Files\Blender Foundation\Blender 4.2\4.2\python\bin"
+cd "D:\your-root\Blender Foundation\Blender 4.2\4.2\python\bin"
 python.exe -m pip install --upgrade pip
 python.exe -m pip install bpy
 python.exe -m pip install pandas
 python.exe -m pip install scipy
 ```
+
+#### Running CARLA
+First, launch the installed CARLA executable before proceeding with the simulation.
+
+#### Environment Initialization
+In this step, we initialize the environment by **spawning vehicles, adjusting weather conditions, and setting up the scene**.  
+You can initialize the environment using the following command:  
+
+```bash
+python start_carla.py --host 127.0.0.1 --port 2000 -n 30 --wKind 0
+```
+📌 **Command Line Arguments:**  
+- **`--host`**: IP of the host server (default: `127.0.0.1`).  
+- **`--port`**: TCP port to listen to (default: `2000`).  
+- **`-n`**: Number of vehicles (default: `50`).  
+- **`--wKind`**: Weather condition:  
+  - `0`: Sunny  
+  - `1`: Night  
+  - `2`: Fog  
+  - `3`: Rainy  
+
+🔹 **Important:** Keep the console running. In the next step, you will execute the sensing data generation script in a separate console.
+
+---
+
+#### Generating Sensing Data in CARLA 
+In this step, CARLA will generate **camera, LiDAR, radar, and vehicle information** as sensing data.  
+Run the following command to generate sensing data:  
+
+```bash
+python generate_data.py --host 127.0.0.1 --port 2000
+```
+
+📌 **Configuration:**  
+The sensing data parameters, such as **base station location, maximum simulation steps, and data storage paths**, can be modified in `config.py`:  
+
+```python
+class GlobalConfig:
+    MAX_STEP = 200  # Maximum steps per episode
+    SAVE_ROOT = './out/'  # Root directory for saving data
+    EPI_NAME = '/episode_x'  # Episode naming format
+    MAT_SAVE_ROOT = '../out/'  # MATLAB save directory
+    BLENDER_PATH = 'C:/your-root/Blender Foundation/Blender 4.2/4.2/python/bin/python.exe'  # Path to Blender executable
+
+    # Map boundaries
+    MAP_X = [-90, 115]
+    MAP_Y = [0, 120]
+
+    # Base station location and orientation
+    bs_location = [26.252628, -86.328842, 21.305660]
+    bs_rotation = [-40, 90, 0]
+```
+
 
 ---
 
