@@ -151,6 +151,7 @@ The dataset generated using this framework is available on **Kaggle**:
 ## **👥 Authors**
 - [Yumin Park](https://github.com/whateveruwant) [![whateveruwant github](https://img.shields.io/badge/GitHub-whateveruwant-181717.svg?style=flat&logo=github)](https://github.com/whateveruwant)
 - [Walid Saad](https://github.com/saadwalid) [![saadwalid github](https://img.shields.io/badge/GitHub-saadwalid-181717.svg?style=flat&logo=github)](https://github.com/saadwalid)
+- [Choong Seon Hong](https://github.com/choongseon) [![choongseon github](https://img.shields.io/badge/GitHub-choongseon-181717.svg?style=flat&logo=github)](https://github.com/choongseon)
 
 ---
 
