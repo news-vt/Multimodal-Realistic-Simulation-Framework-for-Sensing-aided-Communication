@@ -105,6 +105,7 @@ python start_carla.py --host 127.0.0.1 --port 2000 -n 30 --wKind 0
   - `1`: Night  
   - `2`: Fog  
   - `3`: Rainy  
+- **`--matlab`**: Generate sensing data and MATLAB network data simultaneously (but this may take a long time) (default: `False`).  
 
 🔹 **Important:** Keep the console running. In the next step, you will execute the sensing data generation script in a separate console.
 
@@ -117,8 +118,14 @@ Run the following command to generate sensing data:
 ```bash
 python generate_data.py --host 127.0.0.1 --port 2000
 ```
+📌 **Command Line Arguments:**  
+- **`--host`**: IP of the host server (default: `127.0.0.1`)
+- **`--port`**: TCP port to listen to (default: `2000`)
+- **`--matlab`**: Generate sensing data and MATLAB network data simultaneously **(but this may take a long time)** (default: `False`)
 
-📌 **Configuration:**  
+🔹 **Warning:** `--matlab` is set to False. It is more efficient for you to run `netdata_alone.py` separately.
+
+🔹 **Configuration:**  
 The sensing data parameters, such as **base station location, maximum simulation steps, and data storage paths**, can be modified in `config.py`:  
 
 ```python

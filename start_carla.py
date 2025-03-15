@@ -5,52 +5,63 @@ import logging
 from numpy import random
 
 def clean_objects(world):
+    """
+    Disable unnecessary environment objects in the CARLA world to optimize performance.
+    This includes streetlights, foliage, food-related objects, and vehicles.
+    """
     settings = world.get_settings()
-    settings.fixed_delta_seconds = 0.05 # 20 fps
+    settings.fixed_delta_seconds = 0.05  # Set simulation to 20 FPS
     world.apply_settings(settings)
 
+    # Disable specific environment objects
     env_objs = world.get_environment_objects()
     objects_to_toggle = []
     for obj in env_objs:
-        if obj.name.startswith('BP_StreetLight_wall10'):
+        if obj.name.startswith('BP_StreetLight_wall10'):  # Streetlights
             objects_to_toggle.append(obj.id)
-        if obj.name.startswith('InstancedFoliageActor'):
+        if obj.name.startswith('InstancedFoliageActor'):  # Foliage
             objects_to_toggle.append(obj.id)
-        if 'Food' in obj.name:
+        if 'Food' in obj.name:  # Food-related objects
             objects_to_toggle.append(obj.id)
     world.enable_environment_objects(objects_to_toggle, False)
 
+    # Disable all cars in the environment
     env_vehicles = world.get_environment_objects(carla.CityObjectLabel.Car)
-    objects_to_toggle = []
-    for obj in env_vehicles:
-        objects_to_toggle.append(obj.id)
+    objects_to_toggle = [obj.id for obj in env_vehicles]
     world.enable_environment_objects(objects_to_toggle, False)
 
+    # Disable all motorcycles in the environment
     env_vehicles = world.get_environment_objects(carla.CityObjectLabel.Motorcycle)
-    objects_to_toggle = []
-    for obj in env_vehicles:
-        objects_to_toggle.append(obj.id)
+    objects_to_toggle = [obj.id for obj in env_vehicles]
     world.enable_environment_objects(objects_to_toggle, False)
     return
 
 def set_weather(world, _kind):
+    """
+    Set the weather conditions in the CARLA world based on the specified kind.
+    Weather types:
+    0 - Sunny
+    1 - Night
+    2 - Foggy
+    3 - Rainy
+    """
     weather = world.get_weather()
-    if _kind == 0:
+    if _kind == 0:  # Sunny weather
         weather.sun_altitude_angle = 40
-        weather.cloudiness  = 0
+        weather.cloudiness = 0
         weather.precipitation = 0
         weather.precipitation_deposits = 0
         weather.wetness = 0
         weather.wind_intensity = 0
         weather.fog_density = 0
-    elif _kind == 1:
+    elif _kind == 1:  # Night
         weather.sun_altitude_angle = -30
-    elif _kind == 1:
+    elif _kind == 2:  # Foggy
         weather.sun_altitude_angle = 90
         weather.fog_density = 70
-    elif _kind == 1:
+    elif _kind == 3:  # Rainy
         weather.sun_altitude_angle = 40
-        weather.cloudiness  = 90
+        weather.cloudiness = 90
         weather.precipitation = 80
         weather.precipitation_deposits = 85.0
         weather.wetness = 100
@@ -60,19 +71,27 @@ def set_weather(world, _kind):
     return
 
 def get_actor_blueprints(world, filter, generation):
+    """
+    Retrieve actor blueprints from the CARLA blueprint library based on the specified filter and generation.
+    Args:
+        world: The CARLA world object.
+        filter: A string filter to match blueprint IDs.
+        generation: The generation of actors to include (e.g., "1", "2", "All").
+    Returns:
+        A list of blueprints matching the filter and generation.
+    """
     bps = world.get_blueprint_library().filter(filter)
 
     if generation.lower() == "all":
         return bps
 
-    # If the filter returns only one bp, we assume that this one needed
-    # and therefore, we ignore the generation
+    # If only one blueprint matches the filter, return it regardless of generation
     if len(bps) == 1:
         return bps
 
     try:
         int_generation = int(generation)
-        # Check if generation is in available generations
+        # Filter blueprints by generation if valid
         if int_generation in [1, 2, 3]:
             bps = [x for x in bps if int(x.get_attribute('generation')) == int_generation]
             return bps
@@ -84,6 +103,9 @@ def get_actor_blueprints(world, filter, generation):
         return []
 
 def main():
+    """
+    Main function to initialize the CARLA simulation, configure the environment, and spawn actors.
+    """
     argparser = argparse.ArgumentParser(
         description=__doc__)
     argparser.add_argument(
@@ -102,7 +124,7 @@ def main():
         metavar='N',
         default=50,
         type=int,
-        help='Number of vehicles (default: 30)')
+        help='Number of vehicles (default: 50)')
     argparser.add_argument(
         '--wKind', '--kind-of-weather',
         metavar='WEATHER',
@@ -122,7 +144,7 @@ def main():
         '--generationv',
         metavar='G',
         default='All',
-        help='restrict to certain vehicle generation (values: "1","2","All" - default: "All")')
+        help='Restrict to certain vehicle generation (values: "1","2","All" - default: "All")')
     argparser.add_argument(
         '--filterw',
         metavar='PATTERN',
@@ -132,13 +154,13 @@ def main():
         '--generationw',
         metavar='G',
         default='2',
-        help='restrict to certain pedestrian generation (values: "1","2","All" - default: "2")')
+        help='Restrict to certain pedestrian generation (values: "1","2","All" - default: "2")')
     argparser.add_argument(
         '--tm-port',
         metavar='P',
         default=8000,
         type=int,
-        help='Port to communicate with TM (default: 8000)')
+        help='Port to communicate with Traffic Manager (default: 8000)')
     argparser.add_argument(
         '--asynch',
         action='store_true',
@@ -189,13 +211,12 @@ def main():
     synchronous_master = False
     random.seed(args.seed if args.seed is not None else int(time.time()))
 
-    #print(blueprint.get_attribute('driver_id').recommended_values)
-
     try:
         world = client.get_world()
-        clean_objects(world)
-        set_weather(world, args.wKind)
+        clean_objects(world)  # Clean unnecessary objects from the world
+        set_weather(world, args.wKind)  # Set the weather based on user input
 
+        # Configure Traffic Manager
         traffic_manager = client.get_trafficmanager(args.tm_port)
         traffic_manager.set_global_distance_to_leading_vehicle(2.5)
         if args.respawn:
@@ -206,6 +227,7 @@ def main():
         if args.seed is not None:
             traffic_manager.set_random_device_seed(args.seed)
 
+        # Configure synchronous or asynchronous mode
         settings = world.get_settings()
         if not args.asynch:
             traffic_manager.set_synchronous_mode(True)
@@ -224,6 +246,7 @@ def main():
             settings.no_rendering_mode = True
         world.apply_settings(settings)
 
+        # Retrieve and filter blueprints for vehicles and pedestrians
         blueprints = get_actor_blueprints(world, args.filterv, args.generationv)
         if not blueprints:
             raise ValueError("Couldn't find any vehicles with the specified filters")
@@ -236,6 +259,7 @@ def main():
 
         blueprints = sorted(blueprints, key=lambda bp: bp.id)
 
+        # Get spawn points for vehicles
         spawn_points = world.get_map().get_spawn_points()
         number_of_spawn_points = len(spawn_points)
 
@@ -246,14 +270,7 @@ def main():
             logging.warning(msg, args.number_of_vehicles, number_of_spawn_points)
             args.number_of_vehicles = number_of_spawn_points
 
-        # @todo cannot import these directly.
-        SpawnActor = carla.command.SpawnActor
-        SetAutopilot = carla.command.SetAutopilot
-        FutureActor = carla.command.FutureActor
-
-        # --------------
         # Spawn vehicles
-        # --------------
         batch = []
         hero = args.hero
         for n, transform in enumerate(spawn_points):
@@ -268,7 +285,6 @@ def main():
                     for ban in banlist:
                         if ban == tag:
                             again = True
-            print(blueprint.tags)
             if blueprint.has_attribute('color'):
                 color = random.choice(blueprint.get_attribute('color').recommended_values)
                 blueprint.set_attribute('color', color)
@@ -281,9 +297,9 @@ def main():
             else:
                 blueprint.set_attribute('role_name', 'autopilot')
 
-            # spawn the cars and set their autopilot and light state all together
-            batch.append(SpawnActor(blueprint, transform)
-                .then(SetAutopilot(FutureActor, True, traffic_manager.get_port())))
+            # Add the vehicle to the batch for spawning
+            batch.append(carla.command.SpawnActor(blueprint, transform)
+                .then(carla.command.SetAutopilot(carla.command.FutureActor, True, traffic_manager.get_port())))
 
         for response in client.apply_batch_sync(batch, synchronous_master):
             if response.error:
@@ -291,11 +307,7 @@ def main():
             else:
                 vehicles_list.append(response.actor_id)
 
-        all_vehicle_actors = world.get_actors(vehicles_list)
-        for actor in all_vehicle_actors:
-            print(actor.type_id)
-
-        # Set automatic vehicle lights update if specified
+        # Enable automatic vehicle lights if specified
         if args.car_lights_on:
             all_vehicle_actors = world.get_actors(vehicles_list)
             for actor in all_vehicle_actors:
@@ -303,9 +315,10 @@ def main():
 
         print('spawned %d vehicles, press Ctrl+C to exit.' % (len(vehicles_list)))
 
-        # Example of how to use Traffic Manager parameters
+        # Set global speed difference for Traffic Manager
         traffic_manager.global_percentage_speed_difference(30.0)
 
+        # Main simulation loop
         while True:
             if not args.asynch and synchronous_master:
                 world.tick()
@@ -313,6 +326,7 @@ def main():
                 world.wait_for_tick()
 
     finally:
+        # Clean up and destroy all spawned vehicles
         if not args.asynch and synchronous_master:
             settings = world.get_settings()
             settings.synchronous_mode = False
