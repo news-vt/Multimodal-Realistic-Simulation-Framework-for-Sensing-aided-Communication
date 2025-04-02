@@ -167,5 +167,12 @@ The dataset generated using this framework is available on **Kaggle**:
 ---
 
 ## **📚 References**
+[1] T. M. Inc., “Matlab version: 9.13.0 (r2022b),” Natick, Massachusetts, United States, 2022. [Online]. Available: https://www.mathworks.com
+[2] A. Dosovitskiy, G. Ros, F. Codevilla, A. Lopez, and V. Koltun, “CARLA: An open urban driving simulator,” in Proceedings of the 1st Annual Conference on Robot Learning, 2017, pp. 1–16.
+[3] Community BO. “Blender - a 3D modelling and rendering package,” Stichting Blender Foundation, Amsterdam; 2018. [Online]. Available from: http://www.blender.org
+
+---
+
+## **📝 Acknowledgement**
 
 ---
