@@ -151,7 +151,7 @@ class GlobalConfig:
 ## **📊 Dataset**  
 ![Dataset Distribution](img/Distribution.png)
 The dataset generated using this framework is available on **Kaggle**:  
-🔗 [Multimodal Sensing Dataset for Beam Prediction](https://www.kaggle.com/datasets/whateveruwant/multimodal-sensing-dataset-for-beam-prediction)  
+🔗 [Multimodal Sensing Dataset for Beam Prediction](https://www.kaggle.com/datasets/news-vt/multimodal-sensing-dataset-for-beam-prediction)  
 
 ---
 
@@ -172,9 +172,5 @@ The dataset generated using this framework is available on **Kaggle**:
 [2] A. Dosovitskiy, G. Ros, F. Codevilla, A. Lopez, and V. Koltun, “CARLA: An open urban driving simulator,” in Proceedings of the 1st Annual Conference on Robot Learning, 2017, pp. 1–16.
 
 [3] Community BO. “Blender - a 3D modelling and rendering package,” Stichting Blender Foundation, Amsterdam; 2018. [Online]. Available from: http://www.blender.org
-
----
-
-## **📝 Acknowledgement**
 
 ---
