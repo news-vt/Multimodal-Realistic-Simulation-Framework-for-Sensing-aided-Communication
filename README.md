@@ -163,6 +163,17 @@ The dataset generated using this framework is available on **Kaggle**:
 ---
 
 ## **📝 Citation**
+```bibtex
+@misc{park2025resourceefficientbeampredictionmmwave,
+      title={Resource-Efficient Beam Prediction in mmWave Communications with Multimodal Realistic Simulation Framework}, 
+      author={Yu Min Park and Yan Kyaw Tun and Walid Saad and Choong Seon Hong},
+      year={2025},
+      eprint={2504.05187},
+      archivePrefix={arXiv},
+      primaryClass={cs.NI},
+      url={https://arxiv.org/abs/2504.05187}, 
+}
+```
 
 ---
 
