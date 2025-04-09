@@ -1,5 +1,10 @@
 # Multimodal Realistic Simulation Framework for Sensing-Aided Communication 
 
+---
+
+[![arXiv](https://img.shields.io/badge/cs.NI-arXiv:2504.05187-b31b1b.svg?logo=arxiv&logoColor=red)](https://arxiv.org/abs/2504.05187)
+[![License: MIT](https://img.shields.io/badge/License-MIT-04a635.svg?logo=creativecommons&logoColor=white)](/LICENSE)
+
 This repository provides the code for a **multimodal realistic simulation framework** using **CARLA** and **MATLAB**. CARLA is used to generate realistic **autonomous driving sensor data**, while MATLAB is employed for **wireless communication simulations**. This framework enables **multimodal sensing data collection**, **3D digital reconstruction**, and **ray-tracing-based wireless channel modeling** to facilitate **beamforming and channel analysis**.  
 
 ---
