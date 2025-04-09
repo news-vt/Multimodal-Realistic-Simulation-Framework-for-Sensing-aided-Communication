@@ -1,7 +1,5 @@
 # Multimodal Realistic Simulation Framework for Sensing-Aided Communication 
 
----
-
 [![arXiv](https://img.shields.io/badge/cs.NI-arXiv:2504.05187-b31b1b.svg?logo=arxiv&logoColor=red)](https://arxiv.org/abs/2504.05187)
 [![License: MIT](https://img.shields.io/badge/License-MIT-04a635.svg?logo=creativecommons&logoColor=white)](/LICENSE)
 
