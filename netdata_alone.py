@@ -23,7 +23,7 @@ def do_matlab():
     # - BLENDER_PATH: Path to Blender files
     # - bs_location: Adjusted base station location
     # - bs_rotation: Adjusted base station rotation
-    eng.my_function(config.GlobalConfig.MAT_SAVE_ROOT,
+    eng.network_simulate(config.GlobalConfig.MAT_SAVE_ROOT,
                     config.GlobalConfig.BLENDER_PATH,
                     matlab.double(bs_location)[0],
                     matlab.double(bs_rotation)[0],
