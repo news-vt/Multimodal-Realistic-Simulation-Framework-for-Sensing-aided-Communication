@@ -16,7 +16,8 @@ def do_matlab():
     # Retrieve the base station rotation from the configuration
     bs_rotation = config.GlobalConfig.bs_rotation
     # Adjust the x-axis rotation by adding 90 degrees
-    bs_rotation[0] += 90
+    bs_rotation[1] += 90
+    bs_rotation = bs_rotation[1:]
 
     # Call the MATLAB function with the required parameters
     # - MAT_SAVE_ROOT: Path to save MATLAB output
