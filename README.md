@@ -177,6 +177,35 @@ The dataset generated using this framework is available on **Kaggle**:
       url={https://arxiv.org/abs/2504.05187}, 
 }
 ```
+---
+좋아요! 이 내용을 **GitHub README**에 추가하려면, 문맥에 맞게 약간 다듬고, 명확한 제목과 포맷을 추가하는 것이 좋아요. 아래는 README에 추가할 수 있도록 정리한 버전입니다:
+
+---
+
+## **📦 Exporting CARLA Map Mesh for Ray Tracing**
+
+To perform ray tracing simulations, you may need a **mesh file** of the CARLA map. Here's how you can generate it:
+
+🔹 **Step 1: Build CARLA from Source**
+First, you need to build CARLA and open it in **Unreal Engine**.  
+Follow the official guide here:  
+🔗 [How to build CARLA on Windows](https://carla.readthedocs.io/en/stable/how_to_build_on_windows/)
+🔗 [How to build CARLA on Linux](https://carla.readthedocs.io/en/stable/how_to_build_on_linux/)
+
+🔹 **Step 2: Locate CARLA Map Files**
+Once CARLA is opened in **Unreal Engine**, navigate to the following path to find the built-in map files:
+```
+C:\carla_build_root\Unreal\CarlaUE4\Content\Carla\Maps
+```
+
+🔹 **Step 3: Clean and Export the Map in Unreal Engine**
+1. Open the desired `.umap` file (CARLA map) in Unreal.
+2. **Remove unnecessary objects** from the scene to reduce complexity.
+3. Export the map to a **`.glb` file** using:
+   - Unreal's export tools, or  
+   - Blender via Unreal → FBX → Blender → glTF workflow.
+
+⚠️ **Tip:** Avoid exporting the entire map unless necessary — it can be computationally expensive for ray tracing. Focus on the region of interest.
 
 ---
 
