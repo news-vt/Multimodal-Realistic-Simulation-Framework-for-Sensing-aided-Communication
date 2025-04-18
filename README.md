@@ -177,8 +177,6 @@ The dataset generated using this framework is available on **Kaggle**:
       url={https://arxiv.org/abs/2504.05187}, 
 }
 ```
----
-좋아요! 이 내용을 **GitHub README**에 추가하려면, 문맥에 맞게 약간 다듬고, 명확한 제목과 포맷을 추가하는 것이 좋아요. 아래는 README에 추가할 수 있도록 정리한 버전입니다:
 
 ---
 
